@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="FNA">
+      <HintPath>lib\FNA.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+	<ItemGroup>
+		<ContentWithTargetPath Include="lib\FAudio.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>FAudio.dll</TargetPath>
+		</ContentWithTargetPath>
+		<ContentWithTargetPath Include="lib\FNA3D.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>FNA3D.dll</TargetPath>
+		</ContentWithTargetPath>
+		<ContentWithTargetPath Include="lib\libtheorafile.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>libtheorafile.dll</TargetPath>
+		</ContentWithTargetPath>
+		<ContentWithTargetPath Include="lib\SDL2.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>SDL2.dll</TargetPath>
+		</ContentWithTargetPath>
+	</ItemGroup>
+
+</Project>
