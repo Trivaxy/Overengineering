@@ -4,41 +4,42 @@ using System;
 
 namespace Overengineering
 {
-    public class Renderer
+    public static class Renderer
     {
-        public virtual Point MaxResolution { get; set; } = new Point(2560, 1440);
+        public static Point MaxResolution => new Point(2560, 1440);
 
-        public GraphicsDeviceManager Graphics { get; set; }
-        public RenderTarget2D RenderTarget { get; set; }
-        public Game Instance { get; set; }
-        public SpriteBatch Spritebatch { get; set; }
+        public static GraphicsDeviceManager GraphicsDeviceManager { get; private set; }
 
+        public static RenderTarget2D RenderTarget { get; private set; }
 
-        public Rectangle RenderDestination;
+        public static Game Instance { get; private set; }
 
-        public Renderer(Game game)
-        {
+        public static SpriteBatch Spritebatch { get; private set; }
+
+        public static void InitializeGraphics(Game game)
+		{
             Instance = game;
 
-            Graphics = new GraphicsDeviceManager(Instance)
+            GraphicsDeviceManager = new GraphicsDeviceManager(Instance)
             {
                 GraphicsProfile = GraphicsProfile.HiDef
             };
-            Graphics.SynchronizeWithVerticalRetrace = true;
-            Graphics.ApplyChanges();
 
-            int X = MaxResolution.X;
-            int Y = MaxResolution.Y;
-
-            RenderTarget = new RenderTarget2D(Graphics?.GraphicsDevice, X, Y);
-            Spritebatch = new SpriteBatch(Graphics.GraphicsDevice);
+            GraphicsDeviceManager.SynchronizeWithVerticalRetrace = true;
+            GraphicsDeviceManager.ApplyChanges();
         }
 
-        public void Draw()
-        {
-            Spritebatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+        public static void PrepareRenderer()
+		{
+            RenderTarget = new RenderTarget2D(GraphicsDeviceManager.GraphicsDevice, 2560, 1440);
+            Spritebatch = new SpriteBatch(GraphicsDeviceManager.GraphicsDevice);
+        }
 
-            Spritebatch.Draw(RenderTarget, RenderDestination, Color.White);
+        public static void Draw()
+        {
+            Spritebatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+
+            Spritebatch.Draw(RenderTarget, default(Rectangle), Color.White);
 
             Spritebatch.End();
         }

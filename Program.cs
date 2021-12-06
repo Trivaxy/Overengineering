@@ -1,11 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 
 namespace Overengineering
 {
 	public class Program : Game
 	{
-		public static Renderer Renderer { get; set; }
 		public static Game Instance;
 
 		static void Main(string[] args)
@@ -18,18 +16,22 @@ namespace Overengineering
 
 		public Program()
 		{
-			Renderer = new Renderer(this);
+			Renderer.InitializeGraphics(this);
 			Window.AllowUserResizing = true;
 			Content.RootDirectory = "Content";
 			IsMouseVisible = true;
 			IsFixedTimeStep = true;
 		}
 
-        protected override void Draw(GameTime gameTime)
-        {
-            base.Draw(gameTime);
+		protected override void LoadContent()
+		{
+			Renderer.PrepareRenderer();
+		}
 
+		protected override void Draw(GameTime gameTime)
+        {
 			Renderer.Draw();
+			base.Draw(gameTime);
 		}
 	}
 }
