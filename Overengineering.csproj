@@ -29,9 +29,11 @@
 			<TargetPath>SDL2.dll</TargetPath>
 		</ContentWithTargetPath>
 	</ItemGroup>
-
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-	  <Exec Command="XCOPY &quot;$(SolutionDir)\Content&quot; &quot;$(TargetDir)\Content&quot; \S" />
-	</Target>
+	
+	<ItemGroup>
+		<Content Include="Content\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
 </Project>
