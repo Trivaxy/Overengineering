@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -29,5 +29,9 @@
 			<TargetPath>SDL2.dll</TargetPath>
 		</ContentWithTargetPath>
 	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="XCOPY &quot;$(SolutionDir)\Content&quot; &quot;$(TargetDir)\Content&quot; \S" />
+	</Target>
 
 </Project>
