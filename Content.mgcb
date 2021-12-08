@@ -1,0 +1,35 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:Content
+/intermediateDir:obj
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+
+#---------------------------------- Content ---------------------------------#
+
+#begin Content/Textures/LeCat.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/LeCat.png;Textures/LeCat.png
+
+#begin Content/Models/ExampleModel.fbx
+/importer:FbxImporter
+/processor:ModelProcessor
+/build:Content/Models/ExampleModel.fbx;Models/ExampleModel.fbx
+
+#begin Content/Models/Tree.fbx
+/importer:FbxImporter
+/processor:ModelProcessor
+/build:Content/Models/Tree.fbx;Models/Tree.fbx
