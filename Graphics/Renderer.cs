@@ -36,13 +36,13 @@ namespace Overengineering
 
         public static void PrepareRenderer()
 		{
-            RenderTarget = new RenderTarget2D(GraphicsDeviceManager.GraphicsDevice, MaxResolution.X, MaxResolution.Y);
+            RenderTarget = new RenderTarget2D(GraphicsDeviceManager.GraphicsDevice, MaxResolution.X, MaxResolution.Y, false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
             Spritebatch = new SpriteBatch(GraphicsDeviceManager.GraphicsDevice);
         }
 
-        public static void Draw()
+        public static void Draw(World world)
         {
-            DrawToTarget();
+            DrawToTarget(world);
 
             Spritebatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
@@ -51,17 +51,12 @@ namespace Overengineering
             Spritebatch.End();
         }
 
-        public static void DrawToTarget()
+        public static void DrawToTarget(World world)
         {
             GraphicsDeviceManager.GraphicsDevice.SetRenderTarget(RenderTarget);
             GraphicsDeviceManager.GraphicsDevice.Clear(Color.Transparent);
 
-            Spritebatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
-
-            Program.Tree.Position = new Vector3(500,1000,0);
-            Program.Tree.Draw(Spritebatch);
-
-            Spritebatch.End();
+            LayerHost.DrawLayers(world, Spritebatch);
 
             GraphicsDeviceManager.GraphicsDevice.SetRenderTarget(null);
         }
