@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+using Overengineering.Scenes;
 
 namespace Overengineering
 {
@@ -40,23 +39,24 @@ namespace Overengineering
             Spritebatch = new SpriteBatch(GraphicsDeviceManager.GraphicsDevice);
         }
 
-        public static void Draw(World world)
+        public static void DrawScene(Scene scene)
         {
-            DrawToTarget(world);
+            DrawSceneToTarget(scene);
 
             Spritebatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
             Spritebatch.Draw(RenderTarget, Destination, Color.White);
+            SceneHolder.DrawTransition(Spritebatch); // won't do anything if no transition is active
 
             Spritebatch.End();
         }
 
-        public static void DrawToTarget(World world)
+        private static void DrawSceneToTarget(Scene scene)
         {
             GraphicsDeviceManager.GraphicsDevice.SetRenderTarget(RenderTarget);
             GraphicsDeviceManager.GraphicsDevice.Clear(Color.Transparent);
 
-            LayerHost.DrawLayers(world, Spritebatch);
+            LayerHost.DrawLayers(scene, Spritebatch);
 
             GraphicsDeviceManager.GraphicsDevice.SetRenderTarget(null);
         }

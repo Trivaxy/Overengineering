@@ -1,7 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Overengineering.Scenes;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,9 +17,9 @@ namespace Overengineering
             Order();
         }
 
-        public static void DrawLayers(World world, SpriteBatch sb)
+        public static void DrawLayers(Scene scene, SpriteBatch sb)
         {
-            foreach(IDrawable entity in world.Drawables)
+            foreach(IDrawable entity in scene.Drawables)
                 Layers[entity.Layer ?? "Default"].AppendCall(entity.Draw);
 
             foreach (Layer layer in Layers.Values)

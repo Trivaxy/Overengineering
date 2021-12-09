@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Overengineering.Assets;
 using Overengineering.Graphics;
+using Overengineering.Scenes;
 using System;
-using System.Diagnostics;
 
 namespace Overengineering
 {
@@ -12,7 +12,6 @@ namespace Overengineering
 	{
 		public static Game Instance;
 
-		public static World World { get; set; }
 		public static CameraTransform Camera { get; set; }
 
 		public static ModelComponent Tree { get; set; }
@@ -33,10 +32,7 @@ namespace Overengineering
 			Content.RootDirectory = "Content";
 			IsMouseVisible = true;
 			IsFixedTimeStep = true;
-
 			Instance = this;
-
-			World = new World();
 			Camera = new CameraTransform();
 		}
 
@@ -54,7 +50,7 @@ namespace Overengineering
 			float MoveSpeed = 7;
 			float LookAroundSpeed = 0.002f;
 
-			World.Update(gameTime);
+			SceneHolder.Update(gameTime);
 			Camera.Update(gameTime);
 
 			float DeltaX = Mouse.GetState().X - PrevX;
@@ -91,7 +87,8 @@ namespace Overengineering
 			//Texture = Content.Load<Texture2D>("Textures/LeCat");
 			//Model = new ModelComponent(Content.Load<Model>("Models/ExampleModel"));
 			Tree = new ModelComponent(Assets<Model>.Get("Models/Tree"));
-			World.AddEntity(Tree);
+			SceneHolder.StartScene(new TestScene());
+			SceneHolder.AddEntity(Tree);
 
 			Tree.Transform.Scale = new Vector3(1);
 			Tree.Transform.Position = new Vector3(00);
@@ -106,7 +103,7 @@ namespace Overengineering
 
 		protected override void Draw(GameTime gameTime)
         {
-			Renderer.Draw(World);
+			Renderer.DrawScene(SceneHolder.CurrentScene);
 			base.Draw(gameTime);
 		}
 	}
