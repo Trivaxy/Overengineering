@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Overengineering": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

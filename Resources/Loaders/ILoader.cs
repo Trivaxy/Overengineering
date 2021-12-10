@@ -1,4 +1,4 @@
-﻿namespace Overengineering.Assets.Loaders
+﻿namespace Overengineering.Resources.Loaders
 {
 	/// <summary>
 	/// Implementing this interface allows your class to be used as a loader for content by the AssetServer.

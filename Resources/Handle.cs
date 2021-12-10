@@ -1,4 +1,4 @@
-﻿namespace Overengineering.Assets
+﻿namespace Overengineering.Resources
 {
 	public struct Handle<T>
 	{

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Overengineering.Assets;
+using Overengineering.Resources;
 using Overengineering.Graphics;
 
 namespace Overengineering

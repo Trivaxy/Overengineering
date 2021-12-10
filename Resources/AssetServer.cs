@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Overengineering.Assets.Loaders;
+using Overengineering.Resources.Loaders;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace Overengineering.Assets
+namespace Overengineering.Resources
 {
 	/// <summary>
 	/// Manages all registered loaders and provides realtime asset-replacing.

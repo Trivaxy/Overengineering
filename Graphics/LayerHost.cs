@@ -9,7 +9,7 @@ namespace Overengineering
     {
         private static Dictionary<string, Layer> Layers = new Dictionary<string, Layer>();
 
-        private static void Order() => Layers.OrderBy(n => n.Value.Priority);
+        private static void Order() => Layers.OrderBy(n => -n.Value.Priority);
 
         public static void RegisterLayer(Layer layer, string Name)
         {

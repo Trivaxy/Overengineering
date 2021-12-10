@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace Overengineering
 {
@@ -9,6 +6,6 @@ namespace Overengineering
     {
         void Draw(SpriteBatch sb);
 
-        string Layer { get; set; }
+        string Layer { get; }
     }
 }

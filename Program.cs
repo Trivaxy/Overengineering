@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Overengineering.Assets;
-using Overengineering.Assets.Loaders;
-using Overengineering.Graphics;
+using Overengineering.Resources;
 using Overengineering.Scenes;
-using System;
 
 namespace Overengineering
 {
@@ -56,6 +51,7 @@ namespace Overengineering
         {
 			LayerHost.RegisterLayer(new Layer(0, null, Camera), "Models");
 			LayerHost.RegisterLayer(new Layer(0, null, Camera), "Default");
+			LayerHost.RegisterLayer(new Layer(1, null, null), "UI");
 		}
 
 		protected override void Draw(GameTime gameTime)

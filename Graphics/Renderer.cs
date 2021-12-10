@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Overengineering.Graphics.Meshes;
+using Overengineering.Resources;
 using Overengineering.Scenes;
 
 namespace Overengineering
@@ -9,6 +11,12 @@ namespace Overengineering
         public static Point MaxResolution => new Point(2560, 1440);
 
         public static GraphicsDeviceManager GraphicsDeviceManager { get; private set; }
+
+        public static GraphicsDevice Device => GraphicsDeviceManager.GraphicsDevice;
+
+        public static Viewport Viewport => Device.Viewport;
+
+        public static Point ViewportSize => new Point(Viewport.Width, Viewport.Height);
 
         public static RenderTarget2D RenderTarget { get; private set; }
 
@@ -30,13 +38,15 @@ namespace Overengineering
             GraphicsDeviceManager.SynchronizeWithVerticalRetrace = true;
             GraphicsDeviceManager.ApplyChanges();
 
-            Destination = GraphicsDeviceManager.GraphicsDevice.Viewport.Bounds;
+            Destination = Device.Viewport.Bounds;
         }
 
         public static void PrepareRenderer()
 		{
-            RenderTarget = new RenderTarget2D(GraphicsDeviceManager.GraphicsDevice, MaxResolution.X, MaxResolution.Y, false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
-            Spritebatch = new SpriteBatch(GraphicsDeviceManager.GraphicsDevice);
+            Assets<Effect>.Register("BasicEffect", new BasicEffect(Device));
+
+            RenderTarget = new RenderTarget2D(Device, MaxResolution.X, MaxResolution.Y, false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
+            Spritebatch = new SpriteBatch(Device);
         }
 
         public static void DrawScene(Scene scene)
@@ -53,12 +63,13 @@ namespace Overengineering
 
         private static void DrawSceneToTarget(Scene scene)
         {
-            GraphicsDeviceManager.GraphicsDevice.SetRenderTarget(RenderTarget);
-            GraphicsDeviceManager.GraphicsDevice.Clear(Color.Transparent);
+            Device.SetRenderTarget(RenderTarget);
+            Device.Clear(Color.Transparent);
 
+            new QuadMesh(new Vector3(-1000, 0, -1000), new Vector3(-1000, 0, 1000), new Vector3(1000, 0, 1000), new Vector3(1000, 0, -1000), Color.Azure).Draw(Spritebatch);
             LayerHost.DrawLayers(scene, Spritebatch);
 
-            GraphicsDeviceManager.GraphicsDevice.SetRenderTarget(null);
+            Device.SetRenderTarget(null);
         }
     }
 }

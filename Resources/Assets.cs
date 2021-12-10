@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Overengineering.Assets
+namespace Overengineering.Resources
 {
 	public static class Assets<T>
 	{

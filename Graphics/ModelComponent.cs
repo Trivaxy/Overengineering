@@ -49,7 +49,6 @@ namespace Overengineering.Graphics
 
             Renderer.GraphicsDeviceManager.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
-
             foreach (ModelMesh mesh in Model.Meshes)
             {
                 if (Effect != null)

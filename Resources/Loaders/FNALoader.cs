@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Overengineering.Assets.Loaders
+namespace Overengineering.Resources.Loaders
 {
 	/// <summary>
 	/// Loader that is designed to load important content types in FNA.
