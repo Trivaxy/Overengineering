@@ -13,7 +13,7 @@ namespace Overengineering
 
         public Vector3 Target => Transform.Position + Direction;
 
-        protected virtual void OnUpdateTransform() { }
+        protected virtual void OnUpdateTransform(GameTime gameTime) { }
 
         protected virtual void TransformConfiguration()
         {
@@ -25,7 +25,7 @@ namespace Overengineering
 
         public void Update(GameTime gameTime)
         {
-            OnUpdateTransform();
+            OnUpdateTransform(gameTime);
             TransformConfiguration();
         }
 
