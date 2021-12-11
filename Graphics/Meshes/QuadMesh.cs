@@ -13,7 +13,7 @@ namespace Overengineering.Graphics.Meshes
 
 		public ref VertexPositionColorTexture BottomLeft => ref vertices[3];
 
-		public QuadMesh(Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4, Color color, string layer = "Default", Effect effect = null) : base(4, 6, layer, effect)
+		public QuadMesh(Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4, Color color, string layer = "Default", Texture2D texture = null, Effect effect = null) : base(4, 6, layer, texture, effect)
 		{
 			AddVertex(v1, color, Vector2.Zero);
 			AddVertex(v2, color, Vector2.UnitX);

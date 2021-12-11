@@ -16,7 +16,13 @@ namespace Overengineering.Scenes
         public override void OnActivate()
         {
             Tree = new ModelComponent(Assets<Model>.Get("Models/Tree"));
-            Floor = new QuadMesh(new Vector3(-FloorSize, 0, -FloorSize), new Vector3(-FloorSize, 0, FloorSize), new Vector3(FloorSize, 0, FloorSize), new Vector3(FloorSize, 0, -FloorSize), Color.Azure);
+            Floor = new QuadMesh(
+                new Vector3(-FloorSize, 0, -FloorSize), 
+                new Vector3(-FloorSize, 0, FloorSize), 
+                new Vector3(FloorSize, 0, FloorSize), 
+                new Vector3(FloorSize, 0, -FloorSize), 
+                Color.AliceBlue, default, 
+                Assets<Texture2D>.Get("Textures/Floor"));
 
             SceneHolder.AddEntity(Tree);
             Drawables.Add(Floor);

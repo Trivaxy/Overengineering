@@ -14,16 +14,19 @@ namespace Overengineering.Graphics.Meshes
         private int indexPointer;
         private bool finished;
         private string layer;
+        private Texture2D texture;
+
         private Effect effect;
 
         public string Layer => layer;
 
-        public Triangles(int vertexCount, int indexCount, string layer, Effect effect = null)
+        public Triangles(int vertexCount, int indexCount, string layer, Texture2D texture = null, Effect effect = null)
         {
             vertices = new VertexPositionColorTexture[vertexCount];
             indices = new short[indexCount];
             this.layer = layer;
             this.effect = effect;
+            this.texture = texture;
         }
 
         public void AddVertex(Vector3 position, Color color, Vector2 uv)
@@ -75,6 +78,11 @@ namespace Overengineering.Graphics.Meshes
 
             sb.GraphicsDevice.SetVertexBuffer(vertexBuffer);
             sb.GraphicsDevice.Indices = indexBuffer;
+
+            BasicEffect basicEffect = Assets<Effect>.Get("BasicEffect").GetValue() as BasicEffect;
+
+            basicEffect.TextureEnabled = texture != null;
+            basicEffect.Texture = texture;
 
             sb.GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexPointer, 0, indexPointer / 3);
         }
