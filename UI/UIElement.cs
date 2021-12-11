@@ -27,12 +27,6 @@ namespace Overengineering.UI
 
 		public virtual string Layer => "UI";
 
-		public UIElement(float x, float y, float width, float height)
-		{
-			Position = new Vector2(x, y);
-			Size = new Vector2(width, height);
-		}
-
 		public abstract void Draw(SpriteBatch sb);
 
 		public virtual void OnUpdate(GameTime time) { }

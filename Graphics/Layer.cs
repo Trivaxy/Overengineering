@@ -50,7 +50,6 @@ namespace Overengineering
             foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
             {
                 pass.Apply();
-
                 PrimitiveCalls?.Invoke(sb);
             }
 
