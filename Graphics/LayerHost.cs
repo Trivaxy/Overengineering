@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using Overengineering.Graphics.Meshes;
 using Overengineering.Scenes;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,13 @@ namespace Overengineering
 
         public static void DrawLayers(Scene scene, SpriteBatch sb)
         {
-            foreach(IDrawable entity in scene.Drawables)
-                Layers[entity.Layer ?? "Default"].AppendCall(entity.Draw);
+            foreach (IDrawable entity in scene.Drawables)
+            {
+                if (entity is Triangles)
+                    Layers[entity.Layer ?? "Default"].AppendPrimitiveCall(entity.Draw);
+                else
+                    Layers[entity.Layer ?? "Default"].AppendCall(entity.Draw);
+            }
 
             foreach (Layer layer in Layers.Values)
                 layer.Draw(sb);

@@ -30,7 +30,7 @@ namespace Overengineering
         public void Draw(SpriteBatch sb)
         {
             //FNA has shitty overloads smh
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, LayerEffect, Camera.TransformationMatrix);
+            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, LayerEffect, Camera?.TransformationMatrix ?? Matrix.Identity);
 
             LayerEffect?.CurrentTechnique.Passes[0]?.Apply();
 
@@ -41,18 +41,25 @@ namespace Overengineering
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
             Point viewportSize = Renderer.ViewportSize;
-            Vector3 scale = Camera.Transform.Scale;
-            Matrix view = Matrix.CreateLookAt(Camera.Transform.Position, Camera.Target, Vector3.Up);
-            Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45f), Renderer.Viewport.AspectRatio, 1f, 4000.11f);
+
+            Vector3 scale = Camera?.Transform.Scale ?? new Vector3(1);
+            Vector3 position = Camera?.Transform.Position ?? new Vector3(0);
+            Vector3 target = Camera?.Target ?? new Vector3(0);
+
+            Matrix view = Matrix.CreateLookAt(position, target, Vector3.Up);
+            Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45f), Renderer.Viewport.AspectRatio, 1f, 4000f);
+
             BasicEffect basicEffect = Assets<Effect>.Get("BasicEffect").GetValue() as BasicEffect;
 
             basicEffect.View = view;
             basicEffect.Projection = projection;
 
             foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+            {
                 pass.Apply();
 
-            PrimitiveCalls?.Invoke(sb);
+                PrimitiveCalls?.Invoke(sb);
+            }
 
             sb.End();
 

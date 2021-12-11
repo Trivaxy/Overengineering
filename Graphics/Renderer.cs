@@ -60,13 +60,11 @@ namespace Overengineering
 
             Spritebatch.End();
         }
-
         private static void DrawSceneToTarget(Scene scene)
         {
             Device.SetRenderTarget(RenderTarget);
             Device.Clear(Color.Transparent);
 
-            new QuadMesh(new Vector3(-1000, 0, -1000), new Vector3(-1000, 0, 1000), new Vector3(1000, 0, 1000), new Vector3(1000, 0, -1000), Color.Azure).Draw(Spritebatch);
             LayerHost.DrawLayers(scene, Spritebatch);
 
             Device.SetRenderTarget(null);
