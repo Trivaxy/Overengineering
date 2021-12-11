@@ -26,6 +26,10 @@ namespace Overengineering
 
         public static Rectangle Destination { get; set; }
 
+        public static EntityFocalCamera DefaultCamera { get; set; }
+
+        public static CameraTransform UICamera { get; set; }
+
         public static void InitializeGraphics(Game game)
 		{
             Instance = game;
@@ -43,10 +47,26 @@ namespace Overengineering
 
         public static void PrepareRenderer()
 		{
+            InitializeCameras();
+            RegisterLayers();
+
             Assets<Effect>.Register("BasicEffect", new BasicEffect(Device));
 
             RenderTarget = new RenderTarget2D(Device, MaxResolution.X, MaxResolution.Y, false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
             Spritebatch = new SpriteBatch(Device);
+        }
+
+        public static void InitializeCameras()
+		{
+            DefaultCamera = new EntityFocalCamera(null, Vector3.Zero);
+            UICamera = new CameraTransform(Vector3.Zero);
+        }
+
+        public static void RegisterLayers()
+        {
+            LayerHost.RegisterLayer(new Layer(0, DefaultCamera), "Models");
+            LayerHost.RegisterLayer(new Layer(0, DefaultCamera), "Default");
+            LayerHost.RegisterLayer(new Layer(1, UICamera), "UI");
         }
 
         public static void DrawScene(Scene scene)

@@ -16,7 +16,6 @@ namespace Overengineering.Scenes
 			if (sceneTransition != null)
 				UpdateTransition(time);
 
-			Program.Camera.Update(time);
 			GameInput.Instance.Update();
 		}
 

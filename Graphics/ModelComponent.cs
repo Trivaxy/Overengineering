@@ -1,9 +1,6 @@
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 
 namespace Overengineering.Graphics
 {
@@ -41,11 +38,10 @@ namespace Overengineering.Graphics
                     * Matrix.CreateScale(Transform.Scale)
                     * Matrix.CreateWorld(Transform.Position, Vector3.Forward, Vector3.Up); //Move the models position
 
-            // Compute camera matrices.
-            Matrix view = Matrix.CreateLookAt(Program.Camera.Transform.Position, Program.Camera.Target, Vector3.Up);
-
-            //Create the 3D projection for this model
-            Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0f), GraphicsDevice.Viewport.AspectRatio, 1f, 4000f);
+            // Get camera matrices.
+            CameraTransform camera = LayerHost.GetLayer(Layer).Camera;
+            Matrix view = camera.ViewMatrix;
+            Matrix projection = camera.ProjectionMatrix;
 
             Renderer.GraphicsDeviceManager.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 

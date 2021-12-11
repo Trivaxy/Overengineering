@@ -30,7 +30,7 @@ namespace Overengineering.Scenes
             Tree.Transform.Scale = new Vector3(1);
             Tree.Transform.Position = new Vector3(0);
 
-            Program.Camera.Transform.Position.Y += 100;
+            Renderer.DefaultCamera.Transform.Position.Y += 100;
         }
     }
 }

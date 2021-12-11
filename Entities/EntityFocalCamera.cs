@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Overengineering.Scenes;
 using System;
-using System.Diagnostics;
 
 namespace Overengineering
 {
@@ -14,7 +12,9 @@ namespace Overengineering
         public float MouseSensitivity = 0.5f;
         public float InternalWalkSpeed = 10;
 
-        public EntityFocalCamera(Entity entity) => FocalEntity = entity;
+        public EntityFocalCamera(Entity entity, Vector3 cameraDirection, float fieldOfView = MathHelper.PiOver4, float nearPlane = 1f, float farPlane = 5000f)
+            : base(cameraDirection, fieldOfView, nearPlane, farPlane)
+            => FocalEntity = entity;
 
         protected override void OnUpdateTransform(GameTime gameTime)
         {

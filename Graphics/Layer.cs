@@ -16,7 +16,7 @@ namespace Overengineering
 
         public float Priority { get; init; }
 
-        public Layer(float priority = 0, Effect effect = null, CameraTransform camera = default)
+        public Layer(float priority, CameraTransform camera, Effect effect = null)
         {
             LayerEffect = effect;
             Priority = priority;
@@ -29,6 +29,8 @@ namespace Overengineering
 
         public void Draw(SpriteBatch sb)
         {
+            Camera.Update(Time.Current);
+
             //FNA has shitty overloads smh
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, LayerEffect, Camera?.TransformationMatrix ?? Matrix.Identity);
 
@@ -40,19 +42,10 @@ namespace Overengineering
 
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
-            Point viewportSize = Renderer.ViewportSize;
-
-            Vector3 scale = Camera?.Transform.Scale ?? new Vector3(1);
-            Vector3 position = Camera?.Transform.Position ?? new Vector3(0);
-            Vector3 target = Camera?.Target ?? new Vector3(0);
-
-            Matrix view = Matrix.CreateLookAt(position, target, Vector3.Up);
-            Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45f), Renderer.Viewport.AspectRatio, 1f, 4000f);
-
             BasicEffect basicEffect = Assets<Effect>.Get("BasicEffect").GetValue() as BasicEffect;
 
-            basicEffect.View = view;
-            basicEffect.Projection = projection;
+            basicEffect.View = Camera.ViewMatrix;
+            basicEffect.Projection = Camera.ProjectionMatrix;
 
             foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
             {

@@ -8,13 +8,13 @@ namespace Overengineering
 {
     public static class LayerHost
     {
-        private static Dictionary<string, Layer> Layers = new Dictionary<string, Layer>();
+        private static Dictionary<string, Layer> layers = new Dictionary<string, Layer>();
 
-        private static void Order() => Layers.OrderBy(n => -n.Value.Priority);
+        private static void Order() => layers.OrderBy(n => -n.Value.Priority);
 
-        public static void RegisterLayer(Layer layer, string Name)
+        public static void RegisterLayer(Layer layer, string name)
         {
-            Layers.Add(Name, layer);
+            layers.Add(name, layer);
             Order();
         }
 
@@ -23,13 +23,15 @@ namespace Overengineering
             foreach (IDrawable entity in scene.Drawables)
             {
                 if (entity is Triangles)
-                    Layers[entity.Layer ?? "Default"].AppendPrimitiveCall(entity.Draw);
+                    layers[entity.Layer ?? "Default"].AppendPrimitiveCall(entity.Draw);
                 else
-                    Layers[entity.Layer ?? "Default"].AppendCall(entity.Draw);
+                    layers[entity.Layer ?? "Default"].AppendCall(entity.Draw);
             }
 
-            foreach (Layer layer in Layers.Values)
+            foreach (Layer layer in layers.Values)
                 layer.Draw(sb);
         }
+
+        public static Layer GetLayer(string layerName) => layers[layerName ?? "Default"];
     }
 }

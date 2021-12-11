@@ -8,11 +8,15 @@ namespace Overengineering.Scenes
 		public IList<IDrawable> Drawables = new List<IDrawable>();
 		public IList<ITickable> Tickables = new List<ITickable>();
 
-		public void Update(GameTime time)
+		public void UpdateTickables(GameTime time)
 		{
+			Update(time);
+
 			foreach (ITickable tickable in Tickables)
 				tickable.Update(time);
 		}
+
+		public virtual void Update(GameTime time) { }
 
 		public virtual void OnActivate() { }
 
