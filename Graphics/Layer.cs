@@ -47,11 +47,7 @@ namespace Overengineering
             basicEffect.View = Camera.ViewMatrix;
             basicEffect.Projection = Camera.ProjectionMatrix;
 
-            foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
-            {
-                pass.Apply();
-                PrimitiveCalls?.Invoke(sb);
-            }
+            PrimitiveCalls?.Invoke(sb);
 
             sb.End();
 

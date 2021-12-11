@@ -70,6 +70,11 @@ namespace Overengineering.Graphics.Meshes
 
         public void Draw(SpriteBatch sb)
         {
+            BasicEffect basicEffect = Assets<Effect>.Get("BasicEffect").GetValue() as BasicEffect;
+
+            basicEffect.TextureEnabled = texture != null;
+            basicEffect.Texture = texture;
+
             VertexBuffer vertexBuffer = new VertexBuffer(sb.GraphicsDevice, typeof(VertexPositionColorTexture), vertexPointer, BufferUsage.WriteOnly);
             vertexBuffer.SetData(vertices);
 
@@ -79,12 +84,11 @@ namespace Overengineering.Graphics.Meshes
             sb.GraphicsDevice.SetVertexBuffer(vertexBuffer);
             sb.GraphicsDevice.Indices = indexBuffer;
 
-            BasicEffect basicEffect = Assets<Effect>.Get("BasicEffect").GetValue() as BasicEffect;
-
-            basicEffect.TextureEnabled = texture != null;
-            basicEffect.Texture = texture;
-
-            sb.GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexPointer, 0, indexPointer / 3);
+            foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+            {
+                pass.Apply();
+                sb.GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexPointer, 0, indexPointer / 3);
+            }
         }
     }
 }
