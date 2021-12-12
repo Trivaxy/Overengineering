@@ -11,6 +11,7 @@ namespace Overengineering.Scenes
 
 		public static void Update(GameTime time)
 		{
+			CurrentScene.UpdateTickables(time);
 			CurrentScene.Update(time);
 
 			if (sceneTransition != null)

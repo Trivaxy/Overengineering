@@ -74,6 +74,7 @@ namespace Overengineering.Graphics.Meshes
 
             basicEffect.TextureEnabled = texture != null;
             basicEffect.Texture = texture;
+            basicEffect.VertexColorEnabled = true;
 
             VertexBuffer vertexBuffer = new VertexBuffer(sb.GraphicsDevice, typeof(VertexPositionColorTexture), vertexPointer, BufferUsage.WriteOnly);
             vertexBuffer.SetData(vertices);

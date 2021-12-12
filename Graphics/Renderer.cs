@@ -60,7 +60,6 @@ namespace Overengineering
 		{
             DefaultCamera = new EntityFocalCamera(null, Vector3.Zero);
             UICamera = new CameraTransform(Vector3.UnitZ);
-            UICamera.Transform.Position.Z--;
         }
 
         public static void RegisterLayers()
@@ -81,6 +80,7 @@ namespace Overengineering
 
             Spritebatch.End();
         }
+
         private static void DrawSceneToTarget(Scene scene)
         {
             Device.SetRenderTarget(RenderTarget);

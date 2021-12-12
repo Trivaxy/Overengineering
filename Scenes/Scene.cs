@@ -10,8 +10,6 @@ namespace Overengineering.Scenes
 
 		public void UpdateTickables(GameTime time)
 		{
-			Update(time);
-
 			foreach (ITickable tickable in Tickables)
 				tickable.Update(time);
 		}
