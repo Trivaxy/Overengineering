@@ -9,6 +9,9 @@
     <Reference Include="FNA">
       <HintPath>lib\FNA.dll</HintPath>
     </Reference>
+    <Reference Include="FontStashSharp.FNA">
+      <HintPath>lib\FontStashSharp.FNA.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 	<ItemGroup>

@@ -1,0 +1,5 @@
+fonts = ["arial"]
+
+[effect]
+type = "stroked"
+strength = 2

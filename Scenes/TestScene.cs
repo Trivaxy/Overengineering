@@ -4,6 +4,7 @@ using Overengineering.Resources;
 using Overengineering.Graphics;
 using Overengineering.Graphics.Meshes;
 using Overengineering.UI;
+using FontStashSharp;
 
 namespace Overengineering.Scenes
 {
@@ -12,6 +13,7 @@ namespace Overengineering.Scenes
         public static ModelComponent Tree { get; set; }
         public static QuadMesh Floor;
         public static UIQuad TestUIQuad;
+        public static TestText Text;
 
         private readonly int FloorSize = 10000;
 
@@ -27,10 +29,13 @@ namespace Overengineering.Scenes
                 Assets<Texture2D>.Get("Textures/Floor"));
 
             TestUIQuad = new UIQuad(new Vector3(300, 400, 0), new Vector3(300, 300, 0), new Vector3(400, 300, 0), new Vector3(400, 400, 0), Color.Green);
+            Text = new TestText(Assets<FontSystem>.Get("Fonts/Arial"), "Hey OS! <3", 50, new Vector2(10), Color.White);
 
             SceneHolder.AddEntity(Tree);
             Drawables.Add(Floor);
             Drawables.Add(TestUIQuad);
+            Drawables.Add(Text);
+
             Tickables.Add(TestUIQuad);
 
             Tree.Transform.Scale = new Vector3(1);
@@ -39,4 +44,29 @@ namespace Overengineering.Scenes
             Renderer.DefaultCamera.Transform.Position.Y += 100;
         }
     }
+
+    public class TestText : IDrawable
+	{
+        public FontSystem Font;
+        public string Text;
+        public int FontSize;
+        public Vector2 Position;
+        public Color Color;
+
+        public TestText(FontSystem font, string text, int fontSize, Vector2 position, Color color)
+		{
+            Font = font;
+            Text = text;
+            FontSize = fontSize;
+            Position = position;
+            Color = color;
+		}
+
+        public string Layer => "UI";
+
+		public void Draw(SpriteBatch sb)
+		{
+            Font.GetFont(FontSize).DrawText(sb, Text, Position, Color);
+		}
+	}
 }

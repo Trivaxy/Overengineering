@@ -63,7 +63,7 @@ namespace Overengineering.UI
             for (int i = 0; i < Count; i++)
             {
                 float alpha = 1 - i / (float)MaxOnscreenLogs;
-                Utils.DrawTextToLeft(logger[i], Color.Yellow * alpha * LogAlpha, new Vector2(30, ASS.Y - 30 - 20 * i), sb);
+                //Utils.DrawTextToLeft(logger[i], Color.Yellow * alpha * LogAlpha, new Vector2(30, ASS.Y - 30 - 20 * i), sb);
             }
         }
     }

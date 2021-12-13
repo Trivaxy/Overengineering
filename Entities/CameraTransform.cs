@@ -15,6 +15,7 @@ namespace Overengineering
             FieldOfView = fieldOfView;
             NearPlane = nearPlane;
             FarPlane = farPlane;
+            Transform.Scale = Vector3.One;
 		}
 
         public Matrix TransformationMatrix { get; set; }

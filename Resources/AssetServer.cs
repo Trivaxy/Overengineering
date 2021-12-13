@@ -86,7 +86,7 @@ namespace Overengineering.Resources
 		{
 			RegisterLoader(new FNALoader<Texture2D>("Textures/*.png"));
 			RegisterLoader(new FNALoader<Model>("Models/*.xnb"));
-			RegisterLoader(new FNALoader<SpriteFont>("Fonts/*.spritefont"));
+			RegisterLoader(new FontLoader());
 		}
 
 		private static void LoadAssetsInitially()

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Overengineering.Resources;
 using System;
 
 namespace Overengineering
@@ -32,7 +31,7 @@ namespace Overengineering
             Camera.Update(Time.Current);
 
             //FNA has shitty overloads smh
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, LayerEffect, Camera?.TransformationMatrix ?? Matrix.Identity);
+            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, LayerEffect, Camera.TransformationMatrix);
             LayerEffect?.CurrentTechnique.Passes[0]?.Apply();
             DrawCalls?.Invoke(sb);
             sb.End();

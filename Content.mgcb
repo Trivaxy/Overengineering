@@ -13,11 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Content/Fonts/DefaultFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/build:Content/Fonts/DefaultFont.spritefont;Fonts/DefaultFont.spritefont
-
 #begin Content/Models/ExampleModel.fbx
 /importer:FbxImporter
 /processor:ModelProcessor

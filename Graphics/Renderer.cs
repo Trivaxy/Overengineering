@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FontStashSharp;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Overengineering.Graphics.Meshes;
 using Overengineering.Resources;
@@ -80,8 +81,9 @@ namespace Overengineering
 
             Spritebatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
-            Spritebatch.Draw(RenderTarget, Destination, Color.White);
+            Spritebatch.Draw(RenderTarget, new Rectangle(0, 0, MaxResolution.X, MaxResolution.Y), Color.White);
             SceneHolder.DrawTransition(Spritebatch); // won't do anything if no transition is active
+            Assets<FontSystem>.Get("Fonts/Arial").GetValue().GetFont(50).DrawText(Spritebatch, "Hey OS!", new Vector2(0, 90), Color.White);
             Logger.Draw(Spritebatch);
 
             Spritebatch.End();
