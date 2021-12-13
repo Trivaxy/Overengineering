@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Overengineering.UI;
 
 namespace Overengineering.Scenes
 {
@@ -18,6 +19,7 @@ namespace Overengineering.Scenes
 				UpdateTransition(time);
 
 			GameInput.Instance.Update();
+		    Logger.NewText("wqef");
 		}
 
 		public static void StartScene(Scene scene)

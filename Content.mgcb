@@ -3,6 +3,7 @@
 
 /outputDir:Content
 /intermediateDir:obj
+/platform:Windows
 /config:
 /profile:Reach
 /compress:False
@@ -12,17 +13,10 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Content/Textures/LeCat.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Textures/LeCat.png;Textures/LeCat.png
+#begin Content/Fonts/DefaultFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/build:Content/Fonts/DefaultFont.spritefont;Fonts/DefaultFont.spritefont
 
 #begin Content/Models/ExampleModel.fbx
 /importer:FbxImporter
@@ -45,3 +39,15 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Textures/Floor.png;Textures/Floor.png
+
+#begin Content/Textures/LeCat.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/LeCat.png;Textures/LeCat.png

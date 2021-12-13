@@ -23,6 +23,13 @@
 			"action": "build",
 			"importer": "FbxImporter",
 			"processor": "ModelProcessor"
+		},
+		"fonts": {
+			"path": "Fonts/*.spritefont",
+			"recursive": "True",
+			"action": "build",
+			"importer": "FontDescriptionImporter",
+			"processor": "FontDescriptionProcessor"
 		}
 	}
 }

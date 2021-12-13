@@ -71,10 +71,14 @@ namespace Overengineering.Graphics.Meshes
         public void Draw(SpriteBatch sb)
         {
             BasicEffect basicEffect = Assets<Effect>.Get("BasicEffect").GetValue() as BasicEffect;
+            Layer currentlayer = LayerHost.GetLayer(layer);
 
             basicEffect.TextureEnabled = texture != null;
             basicEffect.Texture = texture;
             basicEffect.VertexColorEnabled = true;
+
+            basicEffect.View = currentlayer.Camera.ViewMatrix;
+            basicEffect.Projection = currentlayer.Camera.ProjectionMatrix;
 
             VertexBuffer vertexBuffer = new VertexBuffer(sb.GraphicsDevice, typeof(VertexPositionColorTexture), vertexPointer, BufferUsage.WriteOnly);
             vertexBuffer.SetData(vertices);

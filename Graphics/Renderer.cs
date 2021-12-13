@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Overengineering.Graphics.Meshes;
 using Overengineering.Resources;
 using Overengineering.Scenes;
+using Overengineering.UI;
 
 namespace Overengineering
 {
@@ -30,6 +31,8 @@ namespace Overengineering
 
         public static CameraTransform UICamera { get; set; }
 
+        public static OnScreenLogger Logger { get; set; }
+
         public static void InitializeGraphics(Game game)
 		{
             Instance = game;
@@ -54,6 +57,8 @@ namespace Overengineering
 
             RenderTarget = new RenderTarget2D(Device, MaxResolution.X, MaxResolution.Y, false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
             Spritebatch = new SpriteBatch(Device);
+
+            Logger = new OnScreenLogger();
         }
 
         public static void InitializeCameras()
@@ -77,6 +82,7 @@ namespace Overengineering
 
             Spritebatch.Draw(RenderTarget, Destination, Color.White);
             SceneHolder.DrawTransition(Spritebatch); // won't do anything if no transition is active
+            Logger.Draw(Spritebatch);
 
             Spritebatch.End();
         }

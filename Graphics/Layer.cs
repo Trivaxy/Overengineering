@@ -33,22 +33,12 @@ namespace Overengineering
 
             //FNA has shitty overloads smh
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, LayerEffect, Camera?.TransformationMatrix ?? Matrix.Identity);
-
             LayerEffect?.CurrentTechnique.Passes[0]?.Apply();
-
             DrawCalls?.Invoke(sb);
-
             sb.End();
 
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-
-            BasicEffect basicEffect = Assets<Effect>.Get("BasicEffect").GetValue() as BasicEffect;
-
-            basicEffect.View = Camera.ViewMatrix;
-            basicEffect.Projection = Camera.ProjectionMatrix;
-
             PrimitiveCalls?.Invoke(sb);
-
             sb.End();
 
             DrawCalls = null;
