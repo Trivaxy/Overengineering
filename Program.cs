@@ -3,11 +3,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Overengineering.Resources;
 using Overengineering.Scenes;
 using Overengineering.UI;
+using System;
 
 namespace Overengineering
 {
 	public class Program : Game
 	{
+		[STAThread]
 		static void Main(string[] args)
 		{
 			using (Program program = new Program())
