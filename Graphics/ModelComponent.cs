@@ -28,9 +28,6 @@ namespace Overengineering.Graphics
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            int width = GraphicsDevice.Viewport.Width;
-            int height = GraphicsDevice.Viewport.Height;
-
             Matrix world =
                       Matrix.CreateRotationX(Transform.Rotation.X)
                     * Matrix.CreateRotationY(Transform.Rotation.Y)
@@ -40,6 +37,7 @@ namespace Overengineering.Graphics
 
             // Get camera matrices.
             CameraTransform camera = LayerHost.GetLayer(Layer).Camera;
+
             Matrix view = camera.ViewMatrix;
             Matrix projection = camera.ProjectionMatrix;
 

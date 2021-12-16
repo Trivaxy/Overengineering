@@ -19,7 +19,13 @@ namespace Overengineering
             Order();
         }
 
-        public static void DrawLayers(Scene scene, SpriteBatch sb)
+        public static void DrawLayers(SpriteBatch sb)
+        {
+            foreach (Layer layer in layers.Values)
+                layer.Draw(sb);
+        }
+
+        public static void DrawLayersToTarget(Scene scene, SpriteBatch sb)
         {
             foreach (IDrawable entity in scene.Drawables)
             {
@@ -30,9 +36,7 @@ namespace Overengineering
             }
 
             foreach (Layer layer in layers.Values)
-                layer.Draw(sb);
-
-
+                layer.DrawToTarget(sb);
         }
 
         public static Layer GetLayer(string layerName) => layers[layerName ?? "Default"];

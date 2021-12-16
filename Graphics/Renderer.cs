@@ -11,6 +11,7 @@ namespace Overengineering
     public static class Renderer
     {
         public static Point MaxResolution => new Point(2560, 1440);
+        public static Rectangle MaxResolutionBounds => new Rectangle(0,0, MaxResolution.X, MaxResolution.Y);
 
         public static GraphicsDeviceManager GraphicsDeviceManager { get; private set; }
 
@@ -19,6 +20,10 @@ namespace Overengineering
         public static Viewport Viewport => Device.Viewport;
 
         public static Point ViewportSize => new Point(Viewport.Width, Viewport.Height);
+
+        public static PresentationParameters PresentationParameters => Device.PresentationParameters;
+
+        public static Point BackBufferSize => new Point(PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight);
 
         public static RenderTarget2D RenderTarget { get; private set; }
 
@@ -32,7 +37,6 @@ namespace Overengineering
 
         public static CameraTransform UICamera { get; set; }
 
-        public static OnScreenLogger Logger { get; set; }
 
         public static void InitializeGraphics(Game game)
 		{
@@ -46,7 +50,7 @@ namespace Overengineering
             GraphicsDeviceManager.SynchronizeWithVerticalRetrace = true;
             GraphicsDeviceManager.ApplyChanges();
 
-            Destination = Device.Viewport.Bounds;
+            Destination = PresentationParameters.Bounds;
         }
 
         public static void PrepareRenderer()
@@ -58,20 +62,18 @@ namespace Overengineering
 
             RenderTarget = new RenderTarget2D(Device, MaxResolution.X, MaxResolution.Y, false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
             Spritebatch = new SpriteBatch(Device);
-
-            Logger = new OnScreenLogger();
         }
 
         public static void InitializeCameras()
 		{
-            DefaultCamera = new EntityFocalCamera(null, Vector3.Zero);
+            DefaultCamera = new EntityFocalCamera(null, Vector3.UnitZ);
             UICamera = new CameraTransform(Vector3.UnitZ);
         }
 
         public static void RegisterLayers()
         {
-            LayerHost.RegisterLayer(new Layer(0, DefaultCamera), "Models");
-            LayerHost.RegisterLayer(new Layer(0, DefaultCamera), "Default");
+            LayerHost.RegisterLayer(new CenterScisorLayer(0, DefaultCamera), "Models");
+            LayerHost.RegisterLayer(new CenterScisorLayer(0, DefaultCamera), "Default");
             LayerHost.RegisterLayer(new Layer(1, UICamera), "UI");
         }
 
@@ -81,20 +83,23 @@ namespace Overengineering
 
             Spritebatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
-            Spritebatch.Draw(RenderTarget, new Rectangle(0, 0, MaxResolution.X, MaxResolution.Y), Color.White);
+            Spritebatch.Draw(RenderTarget, Destination, PresentationParameters.Bounds, Color.White);
+
+            Destination = PresentationParameters.Bounds;
+
             SceneHolder.DrawTransition(Spritebatch); // won't do anything if no transition is active
-            Assets<FontSystem>.Get("Fonts/Arial").GetValue().GetFont(50).DrawText(Spritebatch, "Hey OS!", new Vector2(0, 90), Color.White);
-            Logger.Draw(Spritebatch);
 
             Spritebatch.End();
         }
 
         private static void DrawSceneToTarget(Scene scene)
         {
+            LayerHost.DrawLayersToTarget(scene, Spritebatch);
+
             Device.SetRenderTarget(RenderTarget);
             Device.Clear(Color.Transparent);
 
-            LayerHost.DrawLayers(scene, Spritebatch);
+            LayerHost.DrawLayers(Spritebatch);
 
             Device.SetRenderTarget(null);
         }

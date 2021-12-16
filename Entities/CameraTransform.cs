@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Overengineering.Utilities;
 
 namespace Overengineering
 {
@@ -9,7 +10,7 @@ namespace Overengineering
         public float NearPlane;
         public float FarPlane;
 
-        public CameraTransform(Vector3 direction, float fieldOfView = MathHelper.PiOver4, float nearPlane = 1f, float farPlane = 5000f)
+        public CameraTransform(Vector3 direction, float fieldOfView = MathHelper.PiOver2, float nearPlane = .1f, float farPlane = 5000f)
 		{
             Direction = direction;
             FieldOfView = fieldOfView;
@@ -26,7 +27,6 @@ namespace Overengineering
 
         public Matrix ProjectionMatrix => Matrix.CreatePerspectiveFieldOfView(FieldOfView, Renderer.Device.Viewport.AspectRatio, NearPlane, FarPlane);
 
-
         protected virtual void OnUpdateTransform(GameTime gameTime) { }
 
         protected virtual void TransformConfiguration()
@@ -39,8 +39,8 @@ namespace Overengineering
 
         public void Update(GameTime gameTime)
         {
-            OnUpdateTransform(gameTime);
             TransformConfiguration();
+            OnUpdateTransform(gameTime);
         }
 
         public Vector3 GetScreenScale()

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Overengineering.UI;
 using System;
 
 namespace Overengineering
@@ -16,17 +17,21 @@ namespace Overengineering
             : base(cameraDirection, fieldOfView, nearPlane, farPlane)
             => FocalEntity = entity;
 
+
         protected override void OnUpdateTransform(GameTime gameTime)
         {
             KeyboardState k = Keyboard.GetState();
 
-            Angle.X += GameInput.Instance.DeltaMousePosition.X * MouseSensitivity * gameTime.DeltaTime();
-            Angle.Y += GameInput.Instance.DeltaMousePosition.Y * MouseSensitivity * gameTime.DeltaTime();
-
             Vector2 directionX = new Vector2((float)Math.Sin(Angle.X), (float)Math.Cos(Angle.X));
             Vector2 directionY = new Vector2((float)Math.Sin(Angle.Y), (float)Math.Cos(Angle.Y));
 
-            Direction = new Vector3(directionX.X, directionY.X, directionX.Y * directionY.Y);
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                Angle.X += GameInput.Instance.DeltaMousePosition.X * MouseSensitivity * gameTime.DeltaTime();
+                Angle.Y += GameInput.Instance.DeltaMousePosition.Y * MouseSensitivity * gameTime.DeltaTime();
+            }
+
+            Direction = Vector3.Normalize(new Vector3(directionX.X, directionY.X, directionX.Y * directionY.Y));
 
             if (FocalEntity != null)
                 Transform.Position = FocalEntity.Transform.Position;
@@ -38,6 +43,8 @@ namespace Overengineering
                 if (k.IsKeyDown(Keys.D)) Transform.Position += new Vector3(-Direction.Z, 0, Direction.X) * InternalWalkSpeed;
                 if (k.IsKeyDown(Keys.A)) Transform.Position -= new Vector3(-Direction.Z, 0, Direction.X) * InternalWalkSpeed;
             }
+
+            Logger.NewText(Direction);
         }
     }
 }

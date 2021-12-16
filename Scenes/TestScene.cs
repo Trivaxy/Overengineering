@@ -13,8 +13,7 @@ namespace Overengineering.Scenes
         public static ModelComponent Tree { get; set; }
         public static QuadMesh Floor;
         public static UIQuad TestUIQuad;
-        public static TestText Text;
-
+        public static OnScreenLogger ScreenLogger;
         private readonly int FloorSize = 10000;
 
         public override void OnActivate()
@@ -29,14 +28,15 @@ namespace Overengineering.Scenes
                 Assets<Texture2D>.Get("Textures/Floor"));
 
             TestUIQuad = new UIQuad(new Vector3(300, 400, 0), new Vector3(300, 300, 0), new Vector3(400, 300, 0), new Vector3(400, 400, 0), Color.Green);
-            Text = new TestText(Assets<FontSystem>.Get("Fonts/Arial"), "Hey OS! <3", 50, new Vector2(10), Color.White);
+            ScreenLogger = new OnScreenLogger();
 
             SceneHolder.AddEntity(Tree);
+
             Drawables.Add(Floor);
             Drawables.Add(TestUIQuad);
-            Drawables.Add(Text);
-
             Tickables.Add(TestUIQuad);
+            Drawables.Add(ScreenLogger);
+            Tickables.Add(ScreenLogger);
 
             Tree.Transform.Scale = new Vector3(1);
             Tree.Transform.Position = new Vector3(0);
