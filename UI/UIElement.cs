@@ -39,19 +39,19 @@ namespace Overengineering.UI
 
 			if (BoundingBox.Contains((int)mousePos.X, (int)mousePos.Y))
 			{
-				OnMouseHover.Invoke(mousePos);
+				OnMouseHover?.Invoke(mousePos);
 
 				if (GameInput.Instance.JustClickingLeft)
-					OnClick.Invoke(mousePos);
+					OnClick?.Invoke(mousePos);
 
 				if (GameInput.Instance.JustClickingRight)
-					OnRightClick.Invoke(mousePos);
+					OnRightClick?.Invoke(mousePos);
 
 				if (GameInput.Instance.IsClicking)
-					OnMouseHold.Invoke(mousePos);
+					OnMouseHold?.Invoke(mousePos);
 
 				if (GameInput.Instance.IsRightClicking)
-					OnMouseRightHold.Invoke(mousePos);
+					OnMouseRightHold?.Invoke(mousePos);
 			}
 		}
 	}

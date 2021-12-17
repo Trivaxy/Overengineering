@@ -45,7 +45,7 @@ namespace Overengineering.UI
     public class OnScreenLogger : IDrawable, ITickable
     {
         public float LogAlpha;
-        public string Layer => "UI";
+        public string Layer => "Logger";
 
         private readonly int TimeOnScreen = 280;
         public void Update(GameTime gametime)
@@ -64,8 +64,6 @@ namespace Overengineering.UI
 
             Vector2 ASS = Renderer.BackBufferSize.ToVector2();
             int Count = (int)MathHelper.Min(logger.Count, MaxOnscreenLogs);
-
-            Debug.WriteLine(ASS.Y);
 
             for (int i = 0; i < Count; i++)
             {

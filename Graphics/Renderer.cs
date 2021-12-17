@@ -75,10 +75,15 @@ namespace Overengineering
             LayerHost.RegisterLayer(new CenterScisorLayer(0, DefaultCamera), "Models");
             LayerHost.RegisterLayer(new CenterScisorLayer(0, DefaultCamera), "Default");
             LayerHost.RegisterLayer(new Layer(1, UICamera), "UI");
+            LayerHost.RegisterLayer(new Layer(2, new CameraTransform(Vector3.UnitZ)), "Logger");
         }
 
         public static void DrawScene(Scene scene)
         {
+            //Test
+            UICamera.Transform.Position.Z -= 0.1f;
+            Logger.NewText(UICamera.Transform.Position.Z);
+
             DrawSceneToTarget(scene);
 
             Spritebatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);

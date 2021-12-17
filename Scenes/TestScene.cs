@@ -27,7 +27,7 @@ namespace Overengineering.Scenes
                 Color.AliceBlue, default, 
                 Assets<Texture2D>.Get("Textures/Floor"));
 
-            TestUIQuad = new UIQuad(new Vector3(300, 400, 0), new Vector3(300, 300, 0), new Vector3(400, 300, 0), new Vector3(400, 400, 0), Color.Green);
+            TestUIQuad = new UIQuad(new Vector3(0, 0, 0), new Vector3(50, 0, 0), new Vector3(50, 50, 0), new Vector3(0, 50, 0), Color.Green);
             ScreenLogger = new OnScreenLogger();
 
             SceneHolder.AddEntity(Tree);

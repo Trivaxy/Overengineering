@@ -43,8 +43,6 @@ namespace Overengineering
                 if (k.IsKeyDown(Keys.D)) Transform.Position += new Vector3(-Direction.Z, 0, Direction.X) * InternalWalkSpeed;
                 if (k.IsKeyDown(Keys.A)) Transform.Position -= new Vector3(-Direction.Z, 0, Direction.X) * InternalWalkSpeed;
             }
-
-            Logger.NewText(Direction);
         }
     }
 }
