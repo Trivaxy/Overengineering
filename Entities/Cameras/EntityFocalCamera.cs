@@ -13,8 +13,11 @@ namespace Overengineering
         public float MouseSensitivity = 0.5f;
         public float InternalWalkSpeed = 10;
 
-        public EntityFocalCamera(Entity entity, Vector3 cameraDirection, float fieldOfView = MathHelper.PiOver4, float nearPlane = 1f, float farPlane = 5000f)
-            : base(cameraDirection, fieldOfView, nearPlane, farPlane)
+        public EntityFocalCamera(
+            Entity entity, Vector3 cameraDirection, float fieldOfView = MathHelper.PiOver4, 
+            FrustrumType frustrum = FrustrumType.FOV, float nearPlane = 1f, float farPlane = 5000f)
+
+            : base(cameraDirection, fieldOfView, frustrum, nearPlane, farPlane)
             => FocalEntity = entity;
 
 

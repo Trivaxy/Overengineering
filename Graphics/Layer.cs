@@ -46,7 +46,7 @@ namespace Overengineering
             Renderer.Device.SetRenderTarget(Target);
             Renderer.Device.Clear(Color.Transparent);
 
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, LayerEffect, Camera.TransformationMatrix);
+            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
             LayerEffect?.CurrentTechnique.Passes[0]?.Apply();
             DrawCalls?.Invoke(sb);

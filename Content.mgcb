@@ -18,10 +18,20 @@
 /processor:ModelProcessor
 /build:Content/Models/ExampleModel.fbx;Models/ExampleModel.fbx
 
+#begin Content/Models/Monkey.fbx
+/importer:FbxImporter
+/processor:ModelProcessor
+/build:Content/Models/Monkey.fbx;Models/Monkey.fbx
+
 #begin Content/Models/Tree.fbx
 /importer:FbxImporter
 /processor:ModelProcessor
 /build:Content/Models/Tree.fbx;Models/Tree.fbx
+
+#begin Content/Sounds/monke.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/build:Content/Sounds/monke.mp3;Sounds/monke.mp3
 
 #begin Content/Textures/Floor.png
 /importer:TextureImporter

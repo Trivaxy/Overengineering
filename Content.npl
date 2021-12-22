@@ -30,6 +30,13 @@
 			"action": "build",
 			"importer": "FontDescriptionImporter",
 			"processor": "FontDescriptionProcessor"
+		},
+		"sounds": {
+			"path": "Sounds/*.mp3",
+			"recursive": "True",
+			"action": "build",
+			"importer": "Mp3Importer",
+			"processor": "SoundEffectProcessor"
 		}
 	}
 }

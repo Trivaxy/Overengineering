@@ -33,7 +33,7 @@ namespace Overengineering.Graphics.Meshes
         {
             ResetIfFinished();
 
-            vertices[vertexPointer++] = new VertexPositionColorTexture(position, color, uv);
+            vertices[vertexPointer++] = new VertexPositionColorTexture(-position, color, uv);
 
             if (vertexPointer == vertices.Length + 1)
                 Array.Resize(ref vertices, vertices.Length * 2);
@@ -79,6 +79,7 @@ namespace Overengineering.Graphics.Meshes
 
             basicEffect.View = currentlayer.Camera.ViewMatrix;
             basicEffect.Projection = currentlayer.Camera.ProjectionMatrix;
+            basicEffect.World = currentlayer.Camera.WorldMatrix;
 
             VertexBuffer vertexBuffer = new VertexBuffer(sb.GraphicsDevice, typeof(VertexPositionColorTexture), vertexPointer, BufferUsage.WriteOnly);
             vertexBuffer.SetData(vertices);

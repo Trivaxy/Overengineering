@@ -13,20 +13,20 @@ namespace Overengineering.Scenes
 		public static void Update(GameTime time)
 		{
 			CurrentScene.UpdateTickables(time);
+			CurrentScene.UpdateSystems(time);
 			CurrentScene.Update(time);
 
 			if (sceneTransition != null)
 				UpdateTransition(time);
 
 			GameInput.Instance.Update();
-		    Logger.NewText("wqef");
 		}
 
 		public static void StartScene(Scene scene)
 		{
 			CurrentScene?.OnDeactivate();
 			CurrentScene = scene;
-			CurrentScene.OnActivate();
+			CurrentScene.Activate();
 		}
 
 		public static void StartTransition(Scene targetScene, SceneTransition transition)
@@ -55,6 +55,8 @@ namespace Overengineering.Scenes
 
 			if (entity is IDrawable drawable)
 				CurrentScene.Drawables.Add(drawable);
+
+			CurrentScene.AddEntityToSystems(entity);
 		}
 	}
 }

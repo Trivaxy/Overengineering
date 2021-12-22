@@ -8,19 +8,18 @@ namespace Overengineering.Graphics
     {
         public Model Model { get; private set; }
 
-        public GraphicsDevice GraphicsDevice { get; set; }
-
         public Effect Effect { get; set; }
 
         public string Layer { get; set; }
 
+        public bool HasTexture;
         public Action<Effect> ShaderParameters;
 
-        public ModelComponent(Model currentModelInput)
+        public ModelComponent(Model currentModelInput, bool HasTexture = false)
         {
             Model model = currentModelInput;
             Model = model;
-            GraphicsDevice = Renderer.GraphicsDeviceManager.GraphicsDevice;
+            this.HasTexture = HasTexture;
             Effect = null;
         }
 
@@ -62,10 +61,13 @@ namespace Overengineering.Graphics
                     {
                         if (effects is BasicEffect effect)
                         {
+                            if (!HasTexture)
+                                effect.EnableDefaultLighting();
+
+                            effect.TextureEnabled = HasTexture;
                             effect.World = mesh.ParentBone.Transform * world;
                             effect.View = view;
                             effect.Projection = projection;
-                            effect.EnableDefaultLighting();
                             effect.FogEnabled = true;
                             effect.FogEnd = 4000f;
                             effect.FogStart = 2000f;

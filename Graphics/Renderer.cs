@@ -1,10 +1,12 @@
 ﻿using FontStashSharp;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Overengineering.Graphics.Meshes;
 using Overengineering.Resources;
 using Overengineering.Scenes;
 using Overengineering.UI;
+using System;
 
 namespace Overengineering
 {
@@ -67,7 +69,7 @@ namespace Overengineering
         public static void InitializeCameras()
 		{
             DefaultCamera = new EntityFocalCamera(null, Vector3.UnitZ);
-            UICamera = new CameraTransform(Vector3.UnitZ);
+            UICamera = new OrthoPerspectiveCamera(Vector3.UnitZ);
         }
 
         public static void RegisterLayers()
@@ -80,10 +82,6 @@ namespace Overengineering
 
         public static void DrawScene(Scene scene)
         {
-            //Test
-            UICamera.Transform.Position.Z -= 0.1f;
-            Logger.NewText(UICamera.Transform.Position.Z);
-
             DrawSceneToTarget(scene);
 
             Spritebatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);

@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using Overengineering.Resources.Loaders;
 using System;
 using System.Collections.Generic;
@@ -86,6 +88,7 @@ namespace Overengineering.Resources
 		{
 			RegisterLoader(new FNALoader<Texture2D>("Textures/*.png"));
 			RegisterLoader(new FNALoader<Model>("Models/*.xnb"));
+			RegisterLoader(new FNALoader<SoundEffect>("Sounds/*.xnb"));
 			RegisterLoader(new FontLoader());
 		}
 
