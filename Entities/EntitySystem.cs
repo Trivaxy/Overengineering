@@ -10,6 +10,8 @@ namespace Overengineering
 	public interface IEntitySystem : ITickable 
 	{
 		public void AddEntity(Entity entity);
+
+		public void Load();
 	}
 	public abstract class EntitySystem<T> : IEntitySystem where T : Entity
 	{
@@ -17,9 +19,17 @@ namespace Overengineering
 
 		public void AddEntity(Entity entity)
 		{
-			if(entity is T e) Entities.Add(e);
+			if (entity is T e)
+			{
+				Entities.Add(e);
+				EntityWatch(e);
+			}
 		}
 		
 		public abstract void Update(GameTime gameTime);
+
+		public virtual void Load() { }
+
+		public virtual void EntityWatch(in T entity) { }
 	}
 }

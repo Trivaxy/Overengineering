@@ -25,6 +25,7 @@ namespace Overengineering.Scenes
         public override void RegisterSystems()
         {
             AddSystem<KinematicEntitySystem>();
+            AddSystem<VerletEntitySystem>();
         }
 
         public override void OnActivate()
@@ -49,20 +50,20 @@ namespace Overengineering.Scenes
             SceneHolder.AddEntity(Tree);
 
             SceneHolder.AddEntity(new KinematicQuad(
-                new Maths.Polygon[] { new Maths.Polygon(
-                    new Vector3[] {
-                        new Vector3(0, 0, 0),
-                        new Vector3(50, 0, 0),
-                        new Vector3(50, 50, 0),
-                        new Vector3(0, 50, 0) }) }));
+                 new PhysicsPolygon[] { new PhysicsPolygon(
+                    new PhysicsVector[] {
+                        new Vector3(10, -300, 0),
+                        new Vector3(60, -400, 0),
+                        new Vector3(60, -280, 0),
+                        new Vector3(100, -260, 0) }) }));
 
             SceneHolder.AddEntity(new KinematicQuad(
-                 new Maths.Polygon[] { new Maths.Polygon(
-                    new Vector3[] {
-                        new Vector3(0, 0, 0),
-                        new Vector3(60, 0, 0),
-                        new Vector3(60, 50, 0),
-                        new Vector3(0, 50, 0) }) }));
+                new PhysicsPolygon[] { new PhysicsPolygon(
+                    new PhysicsVector[] {
+                        new Vector3(10, -400, 0),
+                        new Vector3(60, -500, 0),
+                        new Vector3(60, -380, 0),
+                        new Vector3(100, -360, 0) }) }));
 
             Drawables.Add(Floor);
             Drawables.Add(ScreenLogger);
@@ -78,7 +79,7 @@ namespace Overengineering.Scenes
 
         public override void Update(GameTime time)
         {
-            if(Rand.random.Next(100) == 0)MonkeySong.Play();
+            if(Rand.random.Next(100) == 0) MonkeySong.Play();
             Monkey.Transform.Rotation.Y = Time.SineTime(Time.Current, 1f);
         }
     }

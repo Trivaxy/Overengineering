@@ -49,6 +49,9 @@ namespace Overengineering.Scenes
         {
             RegisterSystems();
             OnActivate();
+
+            foreach (IEntitySystem system in Systems)
+                system.Load();
         }
 
         public virtual void RegisterSystems() { }

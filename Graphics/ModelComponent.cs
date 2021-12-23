@@ -41,7 +41,7 @@ namespace Overengineering.Graphics
             Matrix projection = camera.ProjectionMatrix;
 
             Renderer.GraphicsDeviceManager.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-
+            
             foreach (ModelMesh mesh in Model.Meshes)
             {
                 if (Effect != null)

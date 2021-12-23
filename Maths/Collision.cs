@@ -35,7 +35,7 @@ namespace Overengineering.Maths
         }
     }
 
-    public struct Polygon
+    public class Polygon
     {
         public Vector3[] points;
 
@@ -71,7 +71,6 @@ namespace Overengineering.Maths
         }
 
         public Polygon(Vector3[] points) => this.points = points;
-
     }
     public static class Collision
     {
