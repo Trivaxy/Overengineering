@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Overengineering.Utilities;
 
 namespace Overengineering
 {
@@ -19,13 +18,13 @@ namespace Overengineering
 
         public FrustrumType ProjectionType;
 
-        public CameraTransform(Vector3 direction, float fieldOfView = MathHelper.PiOver2, FrustrumType frustrum = FrustrumType.FOV, float nearPlane = .1f, float farPlane = 5000f)
+        public CameraTransform(Vector3 direction, float fieldOfView = MathHelper.PiOver2, FrustrumType frustrum = FrustrumType.FOV, float nearPlane = .1f, float farPlane = 5000f, Vector3? scale = null)
         {
             Direction = direction;
             FieldOfView = fieldOfView;
             NearPlane = nearPlane;
             FarPlane = farPlane;
-            Transform.Scale = Vector3.One;
+            Transform.Scale = scale ?? Vector3.One;
 
             ProjectionType = frustrum;
         }

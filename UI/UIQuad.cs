@@ -2,13 +2,12 @@
 using Microsoft.Xna.Framework.Graphics;
 using Overengineering.Graphics.Meshes;
 using Overengineering.Utilities;
-using System;
 
 namespace Overengineering.UI
 {
 	public class UIQuad : UIElement
 	{
-		private QuadMesh Mesh;
+		public QuadMesh Mesh { get; private set; }
 
 		public UIQuad(Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4, Color color)
 		{
@@ -25,9 +24,8 @@ namespace Overengineering.UI
 			Rectangle boundingBox = Utils.BoundingBox(pv1, pv2, pv3, pv4);
 			Position = new Vector2(boundingBox.X, boundingBox.Y);
 			Size = new Vector2(boundingBox.Width, boundingBox.Height);
-			Console.WriteLine(boundingBox);
 		}
 
-		public override void Draw(SpriteBatch sb) => Mesh.Draw(sb);
+		public override void OnDraw(SpriteBatch sb) => Mesh.Draw(sb);
 	}
 }

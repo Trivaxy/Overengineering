@@ -69,7 +69,7 @@ namespace Overengineering
         public static void InitializeCameras()
 		{
             DefaultCamera = new EntityFocalCamera(null, Vector3.UnitZ);
-            UICamera = new OrthoPerspectiveCamera(Vector3.UnitZ);
+            UICamera = new OrthoPerspectiveCamera(Vector3.UnitZ, scale: -Vector3.One);
         }
 
         public static void RegisterLayers()

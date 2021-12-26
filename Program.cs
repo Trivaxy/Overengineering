@@ -39,7 +39,7 @@ namespace Overengineering
 		{
 			AssetServer.Start(Content);
 			Renderer.PrepareRenderer();
-			SceneHolder.StartScene(new TestScene());
+			SceneHolder.StartScene(new MenuScene());
 		}
 
 		protected override void Draw(GameTime gameTime)

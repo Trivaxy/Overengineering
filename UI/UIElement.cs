@@ -15,6 +15,7 @@ namespace Overengineering.UI
 
 	public abstract class UIElement : IDrawable, ITickable
 	{
+		public bool Active = true;
 		public Vector2 Position;
 		public Vector2 Size;
 		public event MouseHover OnMouseHover;
@@ -27,12 +28,21 @@ namespace Overengineering.UI
 
 		public virtual string Layer => "UI";
 
-		public abstract void Draw(SpriteBatch sb);
+		public abstract void OnDraw(SpriteBatch sb);
 
 		public virtual void OnUpdate(GameTime time) { }
 
+		public void Draw(SpriteBatch sb)
+		{
+			if (Active)
+				OnDraw(sb);
+		}
+
 		public void Update(GameTime time)
 		{
+			if (!Active)
+				return;
+
 			OnUpdate(time);
 
 			Vector2 mousePos = GameInput.Instance.MousePosition;

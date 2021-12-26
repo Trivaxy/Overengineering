@@ -19,6 +19,7 @@ namespace Overengineering.Scenes
 
         public static QuadMesh Floor;
         public static OnScreenLogger ScreenLogger;
+        public static UIQuad UIQuad;
 
         private readonly int FloorSize = 10000;
 
@@ -43,6 +44,10 @@ namespace Overengineering.Scenes
                 new Vector3(FloorSize, 0, -FloorSize),
                 Color.AliceBlue, default,
                 Assets<Texture2D>.Get("Textures/Floor"));
+
+            UIQuad = new UIQuad(default, new Vector3(100, 0, 0), new Vector3(100, 100, 0), new Vector3(0, 100, 0), Color.Beige);
+            Drawables.Add(UIQuad);
+            Tickables.Add(UIQuad);
 
             ScreenLogger = new OnScreenLogger();
 
@@ -79,7 +84,7 @@ namespace Overengineering.Scenes
 
         public override void Update(GameTime time)
         {
-            if(Rand.random.Next(100) == 0) MonkeySong.Play();
+            //if(Rand.random.Next(100) == 0) MonkeySong.Play(); FUCK YOU OS
             Monkey.Transform.Rotation.Y = Time.SineTime(Time.Current, 1f);
         }
     }

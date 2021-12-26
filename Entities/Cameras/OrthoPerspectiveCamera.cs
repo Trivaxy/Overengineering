@@ -10,9 +10,9 @@ namespace Overengineering
         public Vector3 Offset;
 
         public OrthoPerspectiveCamera(Vector3 cameraDirection, float fieldOfView = MathHelper.PiOver4, 
-            FrustrumType frustrum = FrustrumType.FOV, float nearPlane = 1f, float farPlane = 5000f)
+            FrustrumType frustrum = FrustrumType.FOV, float nearPlane = 1f, float farPlane = 5000f, Vector3? scale = null)
 
-            : base(cameraDirection, fieldOfView, frustrum, nearPlane, farPlane) { }
+            : base(cameraDirection, fieldOfView, frustrum, nearPlane, farPlane, scale) { }
 
 
         protected override void OnUpdateTransform(GameTime gameTime)
